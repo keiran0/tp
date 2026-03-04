@@ -27,16 +27,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Team Member
 
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
 ### Linq Herng
 
 <img src="images/linq.jpg" width="200px">
@@ -48,16 +38,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: IDK
 * Responsibilities: NOTHING
 
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
 ### keiran0
 
 <img src="images/keiran0.png" width="200px">
@@ -66,6 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Student
 * Responsibilities: Pass cs2103t
+
 ### Brendan Chong
 
 <img src="images/brendaan07.png" width="200px">
