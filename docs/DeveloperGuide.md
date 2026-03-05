@@ -400,11 +400,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1.  Should run on any mainstream OS that supports Java (Windows/macOS/Linux) without requiring OS-specific setup beyond Java.
+2.  All user data should be stored locally on the user’s device.
+3.  Should support an effectively unbounded number of contacts, limited only by the user’s local storage capacity.
+4.  Should detect likely duplicate entries and warn the user before saving, to reduce accidental data errors.
+5.  Should provide clear error messages and input guidance for incorrect command formats.
 
 ### Glossary
 
