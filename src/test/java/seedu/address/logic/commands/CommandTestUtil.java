@@ -99,16 +99,16 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the tutor map, filtered person list and selected person in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        TutorMap expectedAddressBook = new TutorMap(actualModel.getTutorMap());
+        TutorMap expectedTutorMap = new TutorMap(actualModel.getTutorMap());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getTutorMap());
+        assertEquals(expectedTutorMap, actualModel.getTutorMap());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**

@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalTutorMap;
 
 import java.nio.file.Path;
 
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonTutorMapStorage addressBookStorage = new JsonTutorMapStorage(getTempFilePath("ab"));
+        JsonTutorMapStorage tutorMapStorage = new JsonTutorMapStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(tutorMapStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,13 +48,13 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void tutorMapReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        TutorMap original = getTypicalAddressBook();
+        TutorMap original = getTypicalTutorMap();
         storageManager.saveTutorMap(original);
         ReadOnlyTutorMap retrieved = storageManager.readTutorMap().get();
         assertEquals(original, new TutorMap(retrieved));

@@ -6,7 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.HOON;
 import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalTutorMap;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -20,7 +20,7 @@ import seedu.address.model.TutorMap;
 import seedu.address.model.ReadOnlyTutorMap;
 
 public class JsonTutorMapStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTutorMapStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -47,57 +47,57 @@ public class JsonTutorMapStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataLoadingException.class, () -> readTutorMap("notJsonFormatAddressBook.json"));
+        assertThrows(DataLoadingException.class, () -> readTutorMap("notJsonFormatTutorMap.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonTutorMap_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readTutorMap("invalidPersonAddressBook.json"));
+    public void readTutorMap_invalidPersonTutorMap_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readTutorMap("invalidPersonTutorMap.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonTutorMap_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readTutorMap("invalidAndValidPersonAddressBook.json"));
+    public void readTutorMap_invalidAndValidPersonTutorMap_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readTutorMap("invalidAndValidPersonTutorMap.json"));
     }
 
     @Test
     public void readAndSaveTutorMap_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        TutorMap original = getTypicalAddressBook();
-        JsonTutorMapStorage jsonAddressBookStorage = new JsonTutorMapStorage(filePath);
+        TutorMap original = getTypicalTutorMap();
+        JsonTutorMapStorage jsonTutorMapStorage = new JsonTutorMapStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveTutorMap(original, filePath);
-        ReadOnlyTutorMap readBack = jsonAddressBookStorage.readTutorMap(filePath).get();
+        jsonTutorMapStorage.saveTutorMap(original, filePath);
+        ReadOnlyTutorMap readBack = jsonTutorMapStorage.readTutorMap(filePath).get();
         assertEquals(original, new TutorMap(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
-        jsonAddressBookStorage.saveTutorMap(original, filePath);
-        readBack = jsonAddressBookStorage.readTutorMap(filePath).get();
+        jsonTutorMapStorage.saveTutorMap(original, filePath);
+        readBack = jsonTutorMapStorage.readTutorMap(filePath).get();
         assertEquals(original, new TutorMap(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
-        jsonAddressBookStorage.saveTutorMap(original); // file path not specified
-        readBack = jsonAddressBookStorage.readTutorMap().get(); // file path not specified
+        jsonTutorMapStorage.saveTutorMap(original); // file path not specified
+        readBack = jsonTutorMapStorage.readTutorMap().get(); // file path not specified
         assertEquals(original, new TutorMap(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullTutorMap_throwsNullPointerException() {
+    public void saveTutorMap_nullTutorMap_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveTutorMap(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code tutorMap} at the specified {@code filePath}.
      */
-    private void saveTutorMap(ReadOnlyTutorMap addressBook, String filePath) {
+    private void saveTutorMap(ReadOnlyTutorMap tutorMap, String filePath) {
         try {
             new JsonTutorMapStorage(Paths.get(filePath))
-                    .saveTutorMap(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveTutorMap(tutorMap, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

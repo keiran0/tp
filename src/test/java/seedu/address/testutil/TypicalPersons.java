@@ -62,7 +62,7 @@ public class TypicalPersons {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static TutorMap getTypicalAddressBook() {
+    public static TutorMap getTypicalTutorMap() {
         TutorMap ab = new TutorMap();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);

@@ -66,7 +66,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsTutorMapFilePath() {
+    public void setTutorMapFilePath_validPath_setsTutorMapFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setTutorMapFilePath(path);
         assertEquals(path, modelManager.getTutorMapFilePath());
@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInTutorMap_returnsFalse() {
         assertFalse(modelManager.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInTutorMap_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
     }
@@ -95,13 +95,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TutorMap addressBook = new TutorMapBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        TutorMap differentAddressBook = new TutorMap();
+        TutorMap tutorMap = new TutorMapBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        TutorMap differenTutorMap = new TutorMap();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(tutorMap, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(tutorMap, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,13 +113,13 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different tutorMap -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differenTutorMap, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(tutorMap, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -127,6 +127,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setTutorMapFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(tutorMap, differentUserPrefs)));
     }
 }
