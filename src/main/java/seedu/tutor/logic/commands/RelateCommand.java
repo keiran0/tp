@@ -56,7 +56,6 @@ public abstract class RelateCommand extends Command {
 
         default -> {
             // should not reach here
-            //
             return null;
         }
 
