@@ -25,20 +25,26 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final String subject;
     private final Set<Relation> relations = new HashSet<>();
+    private final String subject;
 
     /**
      * Every field must be present and not null.
      */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Relation> relations) {
+        this(name, phone, email, address, tags, relations, "");
+    }
+
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        this(name, phone, email, address, tags, "");
+        this(name, phone, email, address, tags, new HashSet<>(), "");
     }
 
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, String subject) {
-        requireAllNonNull(name, phone, email, address, tags, subject);
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Relation> relations) {
-        requireAllNonNull(name, phone, email, address, tags, relations);
+        this(name, phone, email, address, tags, new HashSet<>(), subject);
+    }
+
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Relation> relations, String subject) {
+        requireAllNonNull(name, phone, email, address, tags, relations, subject);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -113,16 +119,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && relations.equals(otherPerson.relations);
-                && tags.equals(otherPerson.tags)
+                && relations.equals(otherPerson.relations)
                 && subject.equals(otherPerson.subject);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, relations);
-        return Objects.hash(name, phone, email, address, tags, subject);
+        return Objects.hash(name, phone, email, address, tags, relations, subject);
     }
 
     @Override
