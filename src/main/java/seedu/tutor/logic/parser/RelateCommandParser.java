@@ -3,19 +3,37 @@ package seedu.tutor.logic.parser;
 import seedu.tutor.commons.core.index.Index;
 import seedu.tutor.logic.commands.RelateCommand;
 import seedu.tutor.logic.parser.exceptions.ParseException;
+import seedu.tutor.model.relation.Relation;
+
+import java.util.Map;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tutor.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tutor.logic.parser.CliSyntax.*;
 
+/**
+ * Parses input arguments and returns a new RelateCommand object
+ */
 public class RelateCommandParser {
 
+    private final static Map<Prefix, String> RelateCommandTypeHashMap =  Map.of(
+            PREFIX_RELATE_ADD, "add",
+            PREFIX_RELATE_DELETE, "delete"
+    );
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the RelateCommand
+     * and returns a RelateCommand object for execution.
+     * @param args The full user's input.
+     * @return A RelateCommand object.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public RelateCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_RELATE_ADD, PREFIX_RELATE_DELETE);
 
         Index index;
-        String details;
+        Relation relation;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -24,16 +42,15 @@ public class RelateCommandParser {
         }
 
         // currently assume only one operation per command
-        // assume parseRelation exists
+        // can expand to add or delete of multiple relation per command
         if (argMultimap.getValue(PREFIX_RELATE_ADD).isPresent()) {
-            details = ParserUtil.parseRelation(argMultimap.getValue(PREFIX_RELATE_ADD).get());
-            return RelateCommand.create(index, "add", details);
+            relation = ParserUtil.parseRelation(argMultimap.getValue(PREFIX_RELATE_ADD).get());
+            return RelateCommand.create(index, RelateCommandTypeHashMap.get(PREFIX_RELATE_ADD), relation);
         } else if (argMultimap.getValue(PREFIX_RELATE_DELETE).isPresent()) {
-            details = ParserUtil.parseRelation(argMultimap.getValue(PREFIX_RELATE_DELETE).get());
-            return RelateCommand.create(index, "delete", details);
+            relation = ParserUtil.parseRelation(argMultimap.getValue(PREFIX_RELATE_DELETE).get());
+            return RelateCommand.create(index, RelateCommandTypeHashMap.get(PREFIX_RELATE_DELETE), relation);
         } else {
-            // error handling here?
-            return null;
+            throw new ParseException("invalid format: extra argument is needed");
         }
     }
 }
