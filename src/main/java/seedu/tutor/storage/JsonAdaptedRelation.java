@@ -29,7 +29,7 @@ public class JsonAdaptedRelation {
     }
 
     @JsonValue
-    public String getTagName() {
+    public String getRelationName() {
         return relationName;
     }
 

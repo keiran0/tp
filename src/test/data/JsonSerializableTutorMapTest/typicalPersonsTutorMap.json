@@ -6,7 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tags" : [ "friends" ],
-    "relations": [ "mother/child/Elle Meyer/Alice Pauline" ]
+    "relations": [ "Elle Meyer/Alice Pauline/mother/child" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
