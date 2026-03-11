@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.tutor.commons.util.ToStringBuilder;
+import seedu.tutor.model.relation.Relation;
 import seedu.tutor.model.tag.Tag;
 
 /**
@@ -25,6 +26,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final String subject;
+    private final Set<Relation> relations = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -35,11 +37,14 @@ public class Person {
 
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, String subject) {
         requireAllNonNull(name, phone, email, address, tags, subject);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Relation> relations) {
+        requireAllNonNull(name, phone, email, address, tags, relations);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.relations.addAll(relations);
         this.subject = subject;
     }
 
@@ -67,6 +72,11 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+
+    public Set<Relation> getRelations() {
+        return Collections.unmodifiableSet(relations);
     }
 
     /**
@@ -103,12 +113,15 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
+                && relations.equals(otherPerson.relations);
+                && tags.equals(otherPerson.tags)
                 && subject.equals(otherPerson.subject);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(name, phone, email, address, tags, relations);
         return Objects.hash(name, phone, email, address, tags, subject);
     }
 
@@ -120,6 +133,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("relations", relations)
                 .add("subjects", subject)
                 .toString();
     }
