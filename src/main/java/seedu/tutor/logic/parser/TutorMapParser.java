@@ -79,7 +79,7 @@ public class TutorMapParser {
             return new HelpCommand();
 
         case RelateCommand.COMMAND_WORD:
-            return new RelateCommandParser().parse(userInput);
+            return new RelateCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

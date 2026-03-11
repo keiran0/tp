@@ -3,6 +3,14 @@ package seedu.tutor.logic.commands;
 import seedu.tutor.commons.core.index.Index;
 import seedu.tutor.model.relation.Relation;
 
+import static seedu.tutor.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.tutor.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.tutor.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.tutor.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.tutor.logic.parser.CliSyntax.PREFIX_RELATE_ADD;
+import static seedu.tutor.logic.parser.CliSyntax.PREFIX_RELATE_DELETE;
+import static seedu.tutor.logic.parser.CliSyntax.PREFIX_TAG;
+
 /**
  * Creates subtype of RelateCommand.
  */
@@ -10,7 +18,15 @@ public abstract class RelateCommand extends Command{
 
     public static final String COMMAND_WORD = "relate";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the relations of the person identified ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the relations of the person identified "
+            + "by the index number used in the displayed person list. "
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_RELATE_ADD + "RELATION] "
+            + "or "
+            + "[" + PREFIX_RELATE_DELETE + "RELATION]...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_RELATE_ADD + "Linq/Keiran/teammate/teammate ";
 
     /**
      * A factory for the creation of subtypes of RelateCommand.
