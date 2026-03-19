@@ -2,17 +2,10 @@ package seedu.tutor.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tutor.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tutor.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.tutor.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.tutor.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.tutor.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.tutor.logic.parser.CliSyntax.PREFIX_RELATE_ADD;
 import static seedu.tutor.logic.parser.CliSyntax.PREFIX_RELATE_DELETE;
-import static seedu.tutor.logic.parser.CliSyntax.PREFIX_RELATION;
-import static seedu.tutor.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import seedu.tutor.logic.commands.RelateCommand;
@@ -23,11 +16,6 @@ import seedu.tutor.model.relation.Relation;
  * Parses input arguments and returns a new RelateCommand object
  */
 public class RelateCommandParser implements Parser<RelateCommand> {
-
-    private static final Map<Prefix, RelateCommand.RelateCommandType> relateCommandTypeMap = Map.of(
-            PREFIX_RELATE_ADD, RelateCommand.RelateCommandType.ADD,
-            PREFIX_RELATE_DELETE, RelateCommand.RelateCommandType.DELETE
-    );
 
     /**
      * Parses the given {@code String} of arguments in the context of the RelateCommand
@@ -41,17 +29,8 @@ public class RelateCommandParser implements Parser<RelateCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_RELATE_ADD, PREFIX_RELATE_DELETE);
 
         // errors
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()
-                || argMultimap.getValue(PREFIX_EMAIL).isPresent()
-                || argMultimap.getValue(PREFIX_PHONE).isPresent()
-                || argMultimap.getValue(PREFIX_ADDRESS).isPresent()
-                || argMultimap.getValue(PREFIX_TAG).isPresent()
-                || argMultimap.getValue(PREFIX_RELATION).isPresent()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RelateCommand.MESSAGE_USAGE));
-        }
         if (argMultimap.getAllValues(PREFIX_RELATE_ADD).isEmpty()
-                && argMultimap.getAllValues(PREFIX_RELATE_DELETE).isEmpty()) {
+                && argMultimap.getAllValues(PREFIX_RELATE_DELETE).isEmpty() || !validCommand(args)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, RelateCommand.MESSAGE_USAGE));
         }
@@ -70,5 +49,37 @@ public class RelateCommandParser implements Parser<RelateCommand> {
         }
 
         return new RelateCommand(relationsToAdd, relationsToDelete);
+    }
+
+    /**
+     * A linear string checker.
+     * @param args The user's input.
+     * @return The validity of the user's input for relate command.
+     */
+    private boolean validCommand(String args) {
+        args = args.trim();
+        int len = args.length();
+        int accu = 0;   // counting of "/"
+        char[] arr = args.toCharArray();
+        int index = 2;
+
+        if (!(args.startsWith("a\\") || args.startsWith("d\\"))) {
+            return false;
+        }
+
+        while (index != len) {
+            Character current = arr[index];
+            if (current.equals('/')) {
+                accu++;
+            } else if (current.equals('\\')) {
+                accu = 0;
+            }
+
+            if (accu > 3) {
+                return false;
+            }
+            index++;
+        }
+        return true;
     }
 }

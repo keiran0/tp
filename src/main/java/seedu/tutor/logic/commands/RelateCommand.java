@@ -47,7 +47,7 @@ public class RelateCommand extends Command {
 
     /**
      * Return a command that add and/or delete multiple relation.
-     * @param relationsToAdd A set of relation ti be added.
+     * @param relationsToAdd A set of relation to be added.
      * @param relationsToDelete A set of relation to be deleted.
      */
     public RelateCommand(Set<Relation> relationsToAdd, Set<Relation> relationsToDelete) {
