@@ -132,7 +132,6 @@ public class RelateCommand extends Command {
             try {
                 requireNonNull(index1);
                 requireNonNull(index2);
-
             } catch (NullPointerException e) {
                 throw new CommandException(Messages.PERSONS_DOES_NOT_EXIST);
             }

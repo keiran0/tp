@@ -50,8 +50,6 @@ public class DeleteCommand extends Command {
         RelateCommand relateCommand = new RelateCommand(new HashSet<>(), relationsToDelete);
         relateCommand.execute(model);
 
-        // update the variable
-        personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
