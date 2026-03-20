@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import seedu.tutor.commons.core.index.Index;
 import seedu.tutor.logic.Messages;
 import seedu.tutor.logic.commands.exceptions.CommandException;
+import seedu.tutor.logic.parser.Prefix;
 import seedu.tutor.model.Model;
 import seedu.tutor.model.person.Person;
 import seedu.tutor.model.relation.Relation;
@@ -133,7 +134,13 @@ public class RelateCommand extends Command {
                 requireNonNull(index1);
                 requireNonNull(index2);
             } catch (NullPointerException e) {
-                throw new CommandException(Messages.PERSONS_DOES_NOT_EXIST);
+                Prefix prefix;
+                if (type == RelateCommandType.ADD) {
+                    prefix = PREFIX_RELATE_ADD;
+                } else {
+                    prefix = PREFIX_RELATE_DELETE;
+                }
+                throw new CommandException(Messages.PERSONS_DOES_NOT_EXIST + " By: " + prefix + relation.relationName);
             }
 
             Command command1 = createCommand(index1, type, relation);

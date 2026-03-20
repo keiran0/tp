@@ -49,7 +49,7 @@ public class RelateAddCommand extends Command {
         Person personToAddRelation = persons.get(index.getZeroBased());
 
         if (personToAddRelation.getRelations().contains(relationToAdd)) {
-            throw new CommandException(Messages.RELATIONS_ALREADY_EXIST + ", by "
+            throw new CommandException(Messages.RELATIONS_ALREADY_EXIST + " By: "
                     + PREFIX_RELATE_ADD + this.relationToAdd.relationName);
         }
 
