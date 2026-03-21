@@ -58,7 +58,7 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different subject -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withSubject(VALID_SUBJECT_BOB).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withSubjects(VALID_SUBJECT_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 
@@ -72,7 +72,7 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getAddress().orElse(null) + ", tags="
                 + editPersonDescriptor.getTags().orElse(null) + ", relations="
                 + editPersonDescriptor.getRelations().orElse(null) + ", subject="
-                + editPersonDescriptor.getSubject().orElse(null) + "}";
+                + editPersonDescriptor.getSubjects().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }

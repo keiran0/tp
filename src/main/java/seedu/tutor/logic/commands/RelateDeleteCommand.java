@@ -77,7 +77,7 @@ public class RelateDeleteCommand extends RelateCommand {
                 personToDeleteRelation.getAddress(),
                 personToDeleteRelation.getTags(),
                 updatedRelations,
-                personToDeleteRelation.getSubject()
+                personToDeleteRelation.getSubjects()
         );
     }
 

@@ -153,10 +153,10 @@ public class EditCommandTest {
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Person editedPerson = personInList.withSubject(VALID_SUBJECT_AMY).build();
+        Person editedPerson = personInList.withSubjects(VALID_SUBJECT_AMY).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withSubject(VALID_SUBJECT_AMY).build();
+                .withSubjects(VALID_SUBJECT_AMY).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,

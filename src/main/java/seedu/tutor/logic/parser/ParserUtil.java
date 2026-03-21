@@ -112,21 +112,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Subject}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code Subject} is invalid.
-     */
-    public static String parseSubject(String subject) throws ParseException {
-        requireNonNull(subject);
-        String trimmedSubject = subject.trim();
-        if (trimmedSubject.isEmpty()) {
-            throw new ParseException("Subject should not be empty");
-        }
-        return trimmedSubject;
-    }
-
-    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -137,6 +122,34 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String subject} into a {@code Subject}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Subject} is invalid.
+     */
+    public static Tag parseSubject(String subject) throws ParseException {
+        requireNonNull(subject);
+        String trimmedSubject = subject.trim();
+        if (!Tag.isValidTagName(trimmedSubject)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedSubject);
+    }
+
+    /**
+     * Parses {@code Collection<String> subjects} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseSubjects(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> subjectSet = new HashSet<>();
+        for (String tagName : tags) {
+            subjectSet.add(parseTag(tagName));
+        }
+        return subjectSet;
+    }
+
 
     /**
      * Parses a {@code String relations} into a {@code Relation}.

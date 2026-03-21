@@ -104,7 +104,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Relation> updatedRelations = editPersonDescriptor.getRelations().orElse(personToEdit.getRelations());
-        String updatedSubject = editPersonDescriptor.getSubject().orElse(personToEdit.getSubject());
+        Set<Tag> updatedSubject = editPersonDescriptor.getSubjects().orElse(personToEdit.getSubjects());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
                 updatedRelations, updatedSubject);
@@ -145,7 +145,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Set<Relation> relations;
-        private String subject;
+        private Set<Tag> subjects;
 
         public EditPersonDescriptor() {}
 
@@ -160,14 +160,14 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setRelations(toCopy.relations);
-            setSubject(toCopy.subject);
+            setSubjects(toCopy.subjects);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, relations, subject);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, relations, subjects);
         }
 
         public void setName(Name name) {
@@ -220,6 +220,23 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Sets {@code subjects} to this object's {@code subjects}.
+         * A defensive copy of {@code subjects} is used internally.
+         */
+        public void setSubjects(Set<Tag> subjects) {
+            this.subjects = (subjects != null) ? new HashSet<>(subjects) : null;
+        }
+
+        /**
+         * Returns an unmodifiable subjects set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code subjects} is null.
+         */
+        public Optional<Set<Tag>> getSubjects() {
+            return (subjects != null) ? Optional.of(Collections.unmodifiableSet(subjects)) : Optional.empty();
+        }
+
+        /**
          * Sets {@code relations} to this object's {@code relations}.
          * A defensive copy of {@code relations} is used internally.
          */
@@ -234,14 +251,6 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Relation>> getRelations() {
             return (relations != null) ? Optional.of(Collections.unmodifiableSet(relations)) : Optional.empty();
-        }
-
-        public void setSubject(String subject) {
-            this.subject = subject;
-        }
-
-        public Optional<String> getSubject() {
-            return Optional.ofNullable(subject);
         }
 
         @Override
@@ -262,7 +271,7 @@ public class EditCommand extends Command {
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(relations, otherEditPersonDescriptor.relations)
-                    && Objects.equals(subject, otherEditPersonDescriptor.subject);
+                    && Objects.equals(subjects, otherEditPersonDescriptor.subjects);
         }
 
         @Override
@@ -274,7 +283,7 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("tags", tags)
                     .add("relations", relations)
-                    .add("subject", subject)
+                    .add("subject", subjects)
                     .toString();
         }
     }
