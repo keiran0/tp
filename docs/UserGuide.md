@@ -73,8 +73,6 @@ TutorMap is optimized for tutors, who likely have basic computer skills, use app
 
 Provides a message to the user displaying the list of different commands.
 
-![help message](images/helpCommand.png)
-
 Format: `help`
 
 ![help message](images/helpCommand.png)
