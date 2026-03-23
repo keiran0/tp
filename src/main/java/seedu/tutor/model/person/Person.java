@@ -161,5 +161,4 @@ public class Person {
                 .add("subjects", subject)
                 .toString();
     }
-
 }

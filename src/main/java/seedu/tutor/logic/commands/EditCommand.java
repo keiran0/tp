@@ -80,13 +80,45 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        editPersonDescriptor.setRelations(null);
+        // get the existing related relations
+        Set<Relation> oldRelations = personToEdit.getRelations();
+        // clear all related relations
+        Command deleteOldRelations = new RelateCommand(new HashSet<>(), oldRelations);
+        deleteOldRelations.execute(model);
+
+        // renew the personToEdit
+        personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        String oldName = personToEdit.getName().fullName;
+        String newName = editedPerson.getName().fullName;
+        Set<Relation> newRelations = oldRelations;
+        Command addNewRelations = new RelateCommand(newRelations, new HashSet<>());
+        if (!oldName.equals(newName)) {
+            newRelations = new HashSet<>();
+            for (Relation relation: oldRelations) {
+                newRelations.add(relation.changePerson(oldName, newName));
+            }
+            if (!oldRelations.isEmpty()) {
+                // renew adddNewRelations only when the name is changed
+                addNewRelations = new RelateCommand(newRelations, new HashSet<>());
+            }
+        }
+
+        // update the name
         model.setPerson(personToEdit, editedPerson);
+        // if name is change, add the updated relation back, else add back the old relations
+        addNewRelations.execute(model);
+
+        // update the editedPerson
+        editPersonDescriptor.setRelations(newRelations);
+        editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
