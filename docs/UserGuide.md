@@ -73,9 +73,9 @@ TutorMap is optimized for tutors, who likely have basic computer skills, use app
 
 Provides a message to the user displaying the list of different commands.
 
-![help message](images/helpCommand.png)
-
 Format: `help`
+
+![help message](images/helpCommand.png)
 
 
 ### Adding a person: `add`
@@ -84,15 +84,9 @@ Adds a person to TutorMap.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [s/SUBJECT] [t/TAG]…​`
 
-<box type="tip" seamless>
-
-**Tip:** A person can have any number of tags (including 0)
-</box>
-
-<box type="tip" seamless>
-
-**Tip:** A person may have a subject (not required)
-</box>
+Notes: 
+* A person can have any number of tags (including 0)
+* A person can have any number of subjects (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -111,18 +105,19 @@ Edits an existing person in TutorMap.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [s/SUBJECT]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+Notes: 
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, ...
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
+* When editing subjects, the existing subject of the person will be removed i.e adding of subject is not cumulative.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 * You can remove the person's subject by typing `s/` without specifying any subject after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 3 s/` Clears existing subject for the 3rd person.
+* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 3 s/` Clears existing subject for the 3rd person. 
+* `edit 3 s/Math` Edits the subject of the 3rd person to be `Math`.
 
 ### Locating persons by name: `find`
 
