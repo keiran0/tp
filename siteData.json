@@ -105,9 +105,10 @@
     },
     {
       "src": "UserGuide.md",
-      "title": "User Guide",
+      "title": "TutorMap User Guide",
       "headings": {
         "tutormap-user-guide": "TutorMap User Guide",
+        "table-of-contents": "Table of Contents",
         "quick-start": "Quick start",
         "features": "Features",
         "viewing-help-help": "Viewing help : help",
