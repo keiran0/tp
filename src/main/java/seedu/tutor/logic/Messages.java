@@ -54,11 +54,8 @@ public class Messages {
                 .append("; Relations: ")
                 .append(relations)
                 .append("; Subject: ");
-        if (!person.getSubject().isBlank()) {
-            builder.append(person.getSubject());
-            builder.append("; ");
-        }
-        builder.append("Tags: ");
+        person.getSubjects().forEach(builder::append);
+        builder.append(" Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
     }

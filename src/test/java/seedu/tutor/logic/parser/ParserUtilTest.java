@@ -32,7 +32,8 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_SUBJECT = "Physics";
+    private static final String VALID_SUBJECT_1 = "Physics";
+    private static final String VALID_SUBJECT_2 = "Chemistry";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -196,6 +197,7 @@ public class ParserUtilTest {
         assertEquals(expectedTagSet, actualTagSet);
     }
 
+    //subject testing
     @Test
     public void parseSubject_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseSubject(null));
@@ -208,12 +210,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseSubject_validValueWithoutWhitespace_returnsSubject() throws Exception {
-        assertEquals(VALID_SUBJECT, ParserUtil.parseSubject(VALID_SUBJECT));
+        Tag expectedSubject = new Tag(VALID_SUBJECT_1);
+        assertEquals(expectedSubject, ParserUtil.parseSubject(VALID_SUBJECT_1));
     }
 
     @Test
     public void parseSubject_validValueWithWhitespace_returnsTrimmedSubject() throws Exception {
-        String subjectWithWhitespace = WHITESPACE + VALID_SUBJECT + WHITESPACE;
-        assertEquals(VALID_SUBJECT, ParserUtil.parseSubject(subjectWithWhitespace));
+        String tagWithWhitespace = WHITESPACE + VALID_SUBJECT_1 + WHITESPACE;
+        Tag expectedSubject = new Tag(VALID_SUBJECT_1);
+        assertEquals(expectedSubject, ParserUtil.parseTag(tagWithWhitespace));
     }
 }

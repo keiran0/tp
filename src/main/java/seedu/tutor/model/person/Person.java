@@ -26,31 +26,14 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Relation> relations = new HashSet<>();
-    private final String subject;
-
-    /**
-     * Every field must be present and not null.
-     */
-    /* these person constructors are for app to run currently. Once subject and relations are fully added,
-        then they can be removed
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Relation> relations) {
-        this(name, phone, email, address, tags, relations, "");
-    }
-
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        this(name, phone, email, address, tags, new HashSet<>(), "");
-    }
-
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, String subject) {
-        this(name, phone, email, address, tags, new HashSet<>(), subject);
-    }
+    // private final String subject;
+    private final Set<Tag> subject = new HashSet<>();
 
     /**
      * Complete constructor for person, other constructors kept for dependency to be removed over time
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  Set<Tag> tags, Set<Relation> relations, String subject) {
+                  Set<Tag> tags, Set<Relation> relations, Set<Tag> subject) {
         requireAllNonNull(name, phone, email, address, tags, relations, subject);
         this.name = name;
         this.phone = phone;
@@ -58,7 +41,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.relations.addAll(relations);
-        this.subject = subject;
+        this.subject.addAll(subject);
     }
 
     public Name getName() {
@@ -77,8 +60,8 @@ public class Person {
         return address;
     }
 
-    public String getSubject() {
-        return subject;
+    public Set<Tag> getSubjects() {
+        return Collections.unmodifiableSet(subject);
     }
 
     /**

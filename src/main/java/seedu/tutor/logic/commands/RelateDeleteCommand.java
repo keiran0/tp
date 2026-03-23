@@ -79,7 +79,7 @@ public class RelateDeleteCommand extends Command {
                 personToDeleteRelation.getAddress(),
                 personToDeleteRelation.getTags(),
                 updatedRelations,
-                personToDeleteRelation.getSubject()
+                personToDeleteRelation.getSubjects()
         );
     }
 

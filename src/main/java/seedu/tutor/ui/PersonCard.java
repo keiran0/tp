@@ -41,7 +41,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private Label subject;
+    private FlowPane subjects;
     @FXML
     private FlowPane relations;
 
@@ -61,11 +61,9 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        if (person.getSubject().isBlank()) {
-            subject.setText("");
-        } else {
-            subject.setText("Subject: " + person.getSubject());
-        }
+        person.getSubjects().stream()
+                .sorted(Comparator.comparing(subject -> subject.tagName))
+                .forEach(subject -> subjects.getChildren().add(new Label(subject.tagName)));
 
         person.formatRelationNames().stream()
                 .sorted(Comparator.comparing(String::toString))

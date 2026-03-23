@@ -40,7 +40,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
         descriptor.setRelations(person.getRelations());
-        descriptor.setSubject(person.getSubject());
+        descriptor.setSubjects(person.getSubjects());
     }
 
     /**
@@ -86,20 +86,22 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Parses the {@code subjects} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withSubjects(String... subjects) {
+        Set<Tag> subjectSet = Stream.of(subjects).map(Tag::new).collect(Collectors.toSet());
+        descriptor.setSubjects(subjectSet);
+        return this;
+    }
+
+    /**
      * Parses the {@code relations} into a {@code Set<Relation>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withRelations(String... relations) {
         Set<Relation> relationSet = Stream.of(relations).map(Relation::new).collect(Collectors.toSet());
         descriptor.setRelations(relationSet);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Subject} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withSubject(String subject) {
-        descriptor.setSubject(subject);
         return this;
     }
 

@@ -74,7 +74,7 @@ public class RelateAddCommand extends Command {
                 personToAddRelation.getAddress(),
                 personToAddRelation.getTags(),
                 updatedRelations,
-                personToAddRelation.getSubject()
+                personToAddRelation.getSubjects()
         );
     }
 
