@@ -105,7 +105,7 @@ public class EditCommand extends Command {
                 newRelations.add(relation.changePerson(oldName, newName));
             }
             if (!oldRelations.isEmpty()) {
-                // renew adddNewRelations only when the name is changed
+                // only renew adddNewRelations when the name is changed and there is some related relation
                 addNewRelations = new RelateCommand(newRelations, new HashSet<>());
             }
         }
