@@ -1,18 +1,31 @@
----
-  layout: default.md
-    title: "User Guide"
-    pageNav: 3
----
-
 # User Guide
 
 TutorMap is a **desktop app for private tutors to manage tutees, optimized for use via a Command Line Interface** (CLI) while still retaining mouse-based visual elements. TutorMap helps you manage tutee details in one place, including addresses, phone numbers, subjects taught, and relationships between contacts (eg. students, parents and agents).
 
 TutorMap offers you a simple way to stay organized without complex software. If you have basic computer skills, and have been tracking tutees in spreadsheets or notes, then TutorMap is for you. It replaces messy spreadsheets so you can focus on teaching, not admin.
 
-<!-- * Table of Contents -->
-<page-nav-print />
+## Table of Contents
 
+<div style="font-size: 15px">
+
+- [Quick start](#quick-start)
+- [Features](#features)
+  - [Viewing help : `help`](#viewing-help)
+  - [Adding a person: `add`](#adding-person)
+  - [Listing all persons : `list`](#listing-persons)
+  - [Editing a person : `edit`](#editing-person)
+  - [Locating persons by name: `find`](#finding-persons)
+  - [Adding or deleting a relation : `relate`](#relating-persons)
+  - [Deleting a person : `delete`](#deleting-person)
+  - [Clearing all entries : `clear`](#clearing-entries)
+  - [Exiting the program : `exit`](#exiting-program)
+- [Saving the data](#saving-the-data)
+- [Editing the data file](#editing-the-data-file)
+- [FAQ](#faq)
+- [Known issues](#known-issues)
+- [Command summary](#command-summary)
+
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -47,8 +60,6 @@ TutorMap offers you a simple way to stay organized without complex software. If 
 
 ## Features
 
-<box type="info" seamless>
-
 **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -69,7 +80,7 @@ TutorMap offers you a simple way to stay organized without complex software. If 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
 
-### Viewing help : `help`
+### <span id="viewing-help"></span>Viewing help : `help`
 
 Provides a message to the user displaying the list of different commands.
 
@@ -78,7 +89,7 @@ Command format: `help`
 ![help message](images/helpCommand.png)
 
 
-### Adding a person: `add`
+### <span id="adding-person"></span>Adding a person: `add`
 
 Adds a person to TutorMap.
 
@@ -93,13 +104,13 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 * `add n/Ceaser Chips t/student e/cc@example.com a/Mary street p/1234567 s/Math`
 
-### Listing all persons : `list`
+### <span id="listing-persons"></span>Listing all persons : `list`
 
 Shows a list of all persons in TutorMap.
 
 Command format: `list`
 
-### Editing a person : `edit`
+### <span id="editing-person"></span>Editing a person : `edit`
 
 Edits an existing person in TutorMap.
 
@@ -119,12 +130,13 @@ Examples:
 * `edit 3 s/` Clears existing subject for the 3rd person.
 * `edit 3 s/Math` Edits the subject of the 3rd person to be `Math`.
 
-### Locating persons by name: `find`
+### <span id="finding-persons"></span>Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
 Command format: `find KEYWORD [MORE_KEYWORDS]`
 
+Notes: 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
@@ -137,13 +149,14 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Adding or deleting a relation : `relate`
+### <span id="relating-persons"></span>Adding or deleting a relation : `relate`
 
 Adds a relation between 2 specified people in TutorMap.
 
 Command format (adding relation): `relate a\NAME 1/NAME 2/RELATION 1/RELATION 2`  
 Command format (deleting relation): `relate d\NAME 1/NAME 2/RELATION 1/RELATION 2`
 
+Notes: 
 * To add a relation, both names must exist.
 * To delete the relation, all the names and relations must match an existing relation in the same format.
 * The relation will be updated for both persons.
@@ -157,12 +170,13 @@ Examples:
 * `relate a\Teacher Alex/Bernice Yu/Teacher/Student` will create a relation for both `Teacher Alex` and `Bernice Yu`.
 * `relate d\Teacher Alex/Bernice Yu/Teacher/Student` will delete the relation for both `Teacher Alex` and `Bernice Yu`
 
-### Deleting a person : `delete`
+### <span id="deleting-person"></span>Deleting a person : `delete`
 
 Deletes the specified person from TutorMap.
 
 Command format: `delete INDEX`
 
+Notes: 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -171,13 +185,13 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the tutor map.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### <span id="clearing-entries"></span>Clearing all entries : `clear`
 
 Clears all entries from the tutor map.
 
 Command format: `clear`
 
-### Exiting the program : `exit`
+### <span id="exiting-program"></span>Exiting the program : `exit`
 
 Exits the program.
 
@@ -190,8 +204,6 @@ TutorMap data are saved in the hard disk automatically after any command that ch
 ### Editing the data file
 
 TutorMap data are saved automatically as a JSON file `[JAR file location]/data/tutormap.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<box type="warning" seamless>
 
 **Caution:**
 If your changes to the data file makes its format invalid, TutorMap will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
