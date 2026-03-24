@@ -7,9 +7,7 @@ import java.util.function.Predicate;
 import seedu.tutor.commons.util.ToStringBuilder;
 import seedu.tutor.logic.Messages;
 import seedu.tutor.model.Model;
-import seedu.tutor.model.person.NameContainsKeywordsPredicate;
 import seedu.tutor.model.person.Person;
-import seedu.tutor.model.person.RelationContainsStringPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
