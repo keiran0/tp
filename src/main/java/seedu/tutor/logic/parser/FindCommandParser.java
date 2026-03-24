@@ -28,7 +28,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (trimmedArgs.startsWith("r/")) {
             System.out.println(trimmedArgs);
-            String[] split = trimmedArgs.split("/+");
+            String[] split = trimmedArgs.split("r/+");
             if (split.length < 1) {
                 throw new ParseException("Keyword missing! Please specify a keyword after 'r/'"
                         + "Example: find r/Alex Yeoh, find r/parent");
