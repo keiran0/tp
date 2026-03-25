@@ -99,6 +99,7 @@ Command format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [s/SUBJECT] [t/TAG]
 Notes:
 * A person can have any number of tags (including 0)
 * A person can have any number of subjects (including 0)
+* Person fields are case-sensitive (e.g. `John Doe` and `john doe` are different names, `Math` and `math` are different subjects)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
