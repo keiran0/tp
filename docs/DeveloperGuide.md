@@ -295,7 +295,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find other relevant contacts given a contact            | see others who are related to my contact if there is a need to contact them |
 | `* *`    | user                                       | be able to tag contacts                                 | view information relevant to this contact                                   |
 | `*`      | user with many persons in the contact book | sort persons by name                                    | locate a contact easily                                                     |
-| `*`      | user with many persons in the contact book | be able to know the different relation between contacts | know which contacts are related to each other                               |
 
 *{More to be added}*
 
