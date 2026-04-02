@@ -7,7 +7,6 @@ import static seedu.tutor.logic.parser.CliSyntax.PREFIX_DELETE_SUBJECT;
 import static seedu.tutor.logic.parser.CliSyntax.PREFIX_EDIT_SUBJECT;
 
 import seedu.tutor.commons.core.index.Index;
-import seedu.tutor.logic.commands.EditCommand;
 import seedu.tutor.logic.commands.SubjectCommand;
 import seedu.tutor.logic.parser.exceptions.ParseException;
 import seedu.tutor.model.label.Label;

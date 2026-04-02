@@ -2,6 +2,10 @@ package seedu.tutor.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.tutor.commons.core.index.Index;
 import seedu.tutor.logic.Messages;
 import seedu.tutor.logic.commands.exceptions.CommandException;
@@ -10,10 +14,6 @@ import seedu.tutor.logic.parser.exceptions.ParseException;
 import seedu.tutor.model.Model;
 import seedu.tutor.model.label.Label;
 import seedu.tutor.model.person.Person;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Edit a person's subject field using xor operation.
