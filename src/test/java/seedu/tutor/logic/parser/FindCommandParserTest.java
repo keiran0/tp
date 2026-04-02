@@ -2,14 +2,10 @@ package seedu.tutor.logic.parser;
 
 import static seedu.tutor.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tutor.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.tutor.logic.parser.CommandParserTestUtil.assertParseSuccess;
-
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.tutor.logic.commands.FindCommand;
-import seedu.tutor.model.person.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 

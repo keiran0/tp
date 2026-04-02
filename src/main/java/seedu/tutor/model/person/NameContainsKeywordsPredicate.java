@@ -3,7 +3,6 @@ package seedu.tutor.model.person;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.tutor.commons.util.StringUtil;
 import seedu.tutor.commons.util.ToStringBuilder;
 
 /**
