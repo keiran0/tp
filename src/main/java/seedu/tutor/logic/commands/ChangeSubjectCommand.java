@@ -1,6 +1,10 @@
 package seedu.tutor.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.tutor.logic.parser.CliSyntax.PREFIX_NEW_SUBJECT;
+import static seedu.tutor.logic.parser.CliSyntax.PREFIX_OLD_SUBJECT;
+import static seedu.tutor.logic.parser.CliSyntax.PREFIX_RELATE_ADD;
+import static seedu.tutor.logic.parser.CliSyntax.PREFIX_RELATE_DELETE;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,6 +22,15 @@ import seedu.tutor.model.person.Person;
  * Change a subject across the whole list.
  */
 public class ChangeSubjectCommand extends Command {
+
+    public static final String COMMAND_WORD = "changeSubject";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "Changes a particular subject across all person.\n"
+            + "Parameters: "
+            + "[" + PREFIX_OLD_SUBJECT + "SUBJECT_TO_BE_CHANGED] "
+            + "[" + PREFIX_NEW_SUBJECT + "NEW_SUBJECT]\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_OLD_SUBJECT + "Math " + PREFIX_NEW_SUBJECT + "A-Math";
 
     private final Label oldSubject;
     private final Label newSubject;
