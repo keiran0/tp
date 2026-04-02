@@ -25,8 +25,9 @@ public class ChangeSubjectCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + "Changes a particular subject across all person.\n"
             + "Parameters: "
-            + "[" + PREFIX_OLD_SUBJECT + "SUBJECT_TO_BE_CHANGED] "
-            + "[" + PREFIX_NEW_SUBJECT + "NEW_SUBJECT]\n"
+            + "[" + PREFIX_OLD_SUBJECT + "OLD_SUBJECT] "
+            + "[" + PREFIX_NEW_SUBJECT + "NEW_NEW_SUBJECT]\n"
+            + "OLD_SUBJECT and NEW_SUBJECT should only contain alphanumerical symbols.\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_OLD_SUBJECT + "Math " + PREFIX_NEW_SUBJECT + "A-Math";
 
@@ -39,9 +40,9 @@ public class ChangeSubjectCommand extends Command {
      * @param oldSubject The name of the subject to be changed.
      * @param newSubject The name of the subject to be added.
      */
-    public ChangeSubjectCommand(String oldSubject, String newSubject) {
-        this.oldSubject = new Label(oldSubject);
-        this.newSubject = new Label(newSubject);
+    public ChangeSubjectCommand(Label oldSubject, Label newSubject) {
+        this.oldSubject = oldSubject;
+        this.newSubject = newSubject;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class ChangeSubjectCommand extends Command {
 
         for (int index = 0; index < persons.size(); index++) {
             Person person = persons.get(index);
-            Set<Label> subjects = person.getSubjects();
+            Set<Label> subjects = new HashSet<>(person.getSubjects());
             if (subjects.contains(oldSubject)) {
                 subjects.remove(oldSubject);
                 subjects.add(newSubject);
@@ -61,13 +62,14 @@ public class ChangeSubjectCommand extends Command {
                 for (Label label: subjects) {
                     args.add(label.labelName);
                 }
-                StringBuilder input = new StringBuilder(" " + (index + 1) + "s/");
+                StringBuilder input = new StringBuilder(" " + (index + 1));
                 for (String subject: args) {
+                    input.append(" s/");
                     input.append(subject);
-                    input.append(" ");
                 }
                 EditCommand editCommand;
                 try {
+                    System.out.println(input);
                     editCommand = parser.parse(input.toString());
                 } catch (ParseException pe) {
                     throw new CommandException("Unknown error, by ChangeSubjectCommand");
@@ -81,6 +83,11 @@ public class ChangeSubjectCommand extends Command {
             CommandResult temp = editCommand.execute(model);
             commandResult = CommandResult.merge(commandResult, temp);
         }
-        return commandResult;
+
+        if (commandResult == null) {
+            throw new CommandException("Subject does not exist");
+        } else {
+            return commandResult;
+        }
     }
 }

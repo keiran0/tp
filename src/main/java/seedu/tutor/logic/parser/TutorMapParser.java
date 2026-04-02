@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import seedu.tutor.commons.core.LogsCenter;
 import seedu.tutor.logic.commands.AddCommand;
+import seedu.tutor.logic.commands.ChangeSubjectCommand;
 import seedu.tutor.logic.commands.ClearCommand;
 import seedu.tutor.logic.commands.Command;
 import seedu.tutor.logic.commands.DeleteCommand;
@@ -80,6 +81,9 @@ public class TutorMapParser {
 
         case RelateCommand.COMMAND_WORD:
             return new RelateCommandParser().parse(arguments);
+
+        case ChangeSubjectCommand.COMMAND_WORD:
+            return new ChangeSubjectCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
