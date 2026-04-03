@@ -46,7 +46,7 @@ public class RelateCommand extends Command {
 
     private final Set<Relation> relationsToAdd;
     private final Set<Relation> relationsToDelete;
-    private HashMap<String, Index> nameToIndexMap = new HashMap<>();
+    private final HashMap<String, Index> nameToIndexMap = new HashMap<>();
 
     /**
      * Return a command that add and/or delete multiple relation.
@@ -103,18 +103,18 @@ public class RelateCommand extends Command {
         }
 
         ObservableList<Person> persons = model.getTutorMap().getPersonList();
-        int ind = -1;
+        int personIndex = -1;
 
         // I'm not very sure if this always returns the correct index
         for (int i = 0; i < persons.size(); i++) {
             Person currentPerson = persons.get(i);
             if (currentPerson.getName().toString().equals(name)) {
-                ind = i;
+                personIndex = i;
             }
         }
 
-        if (ind != -1) {
-            Index index = Index.fromZeroBased(ind);
+        if (personIndex != -1) {
+            Index index = Index.fromZeroBased(personIndex);
             this.nameToIndexMap.put(name, index);
             return index;
         } else {
