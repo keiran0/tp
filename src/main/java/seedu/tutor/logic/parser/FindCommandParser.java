@@ -7,6 +7,7 @@ import java.util.Arrays;
 import seedu.tutor.logic.commands.FindCommand;
 import seedu.tutor.logic.parser.exceptions.ParseException;
 import seedu.tutor.model.person.AddressContainsStringPredicate;
+import seedu.tutor.model.person.EmailContainsStringPredicate;
 import seedu.tutor.model.person.NameContainsKeywordsPredicate;
 import seedu.tutor.model.person.PhoneNumberContainsStringPredicate;
 import seedu.tutor.model.person.RelationContainsStringPredicate;
@@ -97,7 +98,19 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
-        throw new ParseException("Prefix missing! Find must be followed by either 'n/', 's/', 'a/', 'p/' or 'r/' "
+        if (trimmedArgs.startsWith("e/")) {
+            String trimmed = trimmedArgs.substring(2).trim();
+            String slashRegex = "[ /]+$";
+            if (trimmed.isEmpty() || trimmed.matches(slashRegex)) {
+                throw new ParseException("Keyword missing! Please specify a non-space, "
+                        + "non-slash keyword (email) after 'e/' \n"
+                        + "Example: find e/gmail, find e/alexyeoh123@fakemail.com");
+            }
+
+            return new FindCommand(new EmailContainsStringPredicate(trimmed));
+        }
+
+        throw new ParseException("Prefix missing! Find must be followed by either 'n/', 's/', 'a/', 'p/', 'e/' or 'r/' "
                 + "depending on what field is being searched for.");
     }
 
