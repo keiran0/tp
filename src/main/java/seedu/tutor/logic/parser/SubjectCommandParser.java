@@ -94,8 +94,7 @@ public class SubjectCommandParser implements Parser<SubjectCommand> {
             return new SubjectCommand(index, SubjectCommand.SubjectCommandType.EDIT, labels);
         }
 
-        // should not reach here
-        return null;
+        throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT + SubjectCommand.MESSAGE_USAGE);
     }
 
     /**
