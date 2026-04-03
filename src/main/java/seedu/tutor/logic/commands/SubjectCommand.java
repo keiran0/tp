@@ -26,11 +26,11 @@ public class SubjectCommand extends Command {
             + "[" + PREFIX_DELETE_SUBJECT + "SUBJECT1/SUBJECT2/SUBJECT3/...] "
             + "or "
             + "INDEX (must be a positive integer) + [" + PREFIX_EDIT_SUBJECT + "SUBJECT1/SUBJECT2/SUBJECT3/...]\n"
-            + "Example: "
-            + COMMAND_WORD + " " + PREFIX_CHANGE_SUBJECT + "Math/AddMath, "
-            + COMMAND_WORD + " " + PREFIX_DELETE_SUBJECT + "Math/Science/Chinese/History, "
-            + COMMAND_WORD + " " + PREFIX_DELETE_SUBJECT + "Math/Biology, "
-            + COMMAND_WORD + " 1 " + PREFIX_EDIT_SUBJECT + "Math/Science/Chinese/History, "
+            + "Example:\n"
+            + COMMAND_WORD + " " + PREFIX_CHANGE_SUBJECT + "Math/AddMath\n"
+            + COMMAND_WORD + " " + PREFIX_DELETE_SUBJECT + "Math/Science/Chinese/History\n"
+            + COMMAND_WORD + " " + PREFIX_DELETE_SUBJECT + "Math/Biology\n"
+            + COMMAND_WORD + " 1 " + PREFIX_EDIT_SUBJECT + "Math/Science/Chinese/History\n"
             + COMMAND_WORD + " 2 " + PREFIX_EDIT_SUBJECT + "Physic/Chemistry";
 
     /**
