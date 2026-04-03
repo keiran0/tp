@@ -75,7 +75,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                         + "Example: find n/Bob, find n/Alice Bob");
             }
 
-            String[] nameKeywords = trimmedArgs.split("\\s+");
+            String[] nameKeywords = trimmed.split("\\s+");
 
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
