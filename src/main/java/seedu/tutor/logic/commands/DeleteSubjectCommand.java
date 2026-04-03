@@ -65,7 +65,7 @@ public class DeleteSubjectCommand extends Command {
             try {
                 editCommand = parser.parse(input.toString());
             } catch (ParseException pe) {
-                throw new CommandException("Unknown error, by ChangeSubjectCommand");
+                throw new CommandException("Unknown error, by DeleteSubjectCommand");
             }
             editCommands.add(editCommand);
         }
