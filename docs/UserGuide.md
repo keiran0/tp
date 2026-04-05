@@ -239,6 +239,23 @@ Examples:
 * `e/gmail` will find everyone whose email contains `gmail`
 * `e/C` will find everyone who is labelled with the subject that is or contains `C` (e.g. `clara@fakemail.com`, `example@example.com`)
 
+### <span id="finding-persons-by-address"></span>Locating persons by address: `find a/KEYWORD`
+
+Finds persons that have an address containing the keyword.
+
+Command format: `find a/KEYWORD`
+
+Notes:
+* The search is case-insensitive. e.g `blk` will match `BLK`
+* Only the address is searched
+* Partial searching is supported (i.e. `find a/21` will display anyone with `21` in their addresses)
+* Order of the characters matter. For example, `a/Kent Ridge` is not the same as `a/Ridge Kent`
+
+Examples:
+* `a/Blk` will find everyone whose address contains `Blk`
+* `a/Street` will find everyone whose address contains `Street`
+* `a/l` will find everyone whose address contains `l`
+
 ### <span id="relating-persons"></span>Adding or deleting a relation : `relate`
 
 Adds a relation between 2 specified people in TutorMap.
