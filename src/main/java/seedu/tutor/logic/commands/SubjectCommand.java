@@ -63,19 +63,19 @@ public class SubjectCommand extends Command {
             if (this.subjects.length != 2) {
                 throw new CommandException("Input error: there should only have two subjects");
             }
-            return new ChangeSubjectCommand(subjects[0], subjects[1]);
+            return new SubjectChangeCommand(subjects[0], subjects[1]);
 
         case DELETE:
             if (this.subjects.length == 0) {
                 throw new CommandException("Input error: there should be at least one subject");
             }
-            return new DeleteSubjectCommand(this.subjects);
+            return new SubjectDeleteCommand(this.subjects);
 
         case EDIT:
             if (this.subjects.length == 0) {
                 throw new CommandException("Input error: there should be at least one subject");
             }
-            return new EditSubjectCommand(this.index, this.subjects);
+            return new SubjectEditCommand(this.index, this.subjects);
 
         default:
             // should not reach here

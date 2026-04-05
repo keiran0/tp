@@ -18,7 +18,7 @@ import seedu.tutor.model.person.Person;
 /**
  * Edits a person's subject field using xor operation.
  */
-public class EditSubjectCommand extends Command {
+public class SubjectEditCommand extends Command {
 
     private final Index index;
     private final Label[] subjectsToEdits;
@@ -29,7 +29,7 @@ public class EditSubjectCommand extends Command {
      * @param index The index of the person to be edited.
      * @param subjectsToEdits The subjects to be added or removed.
      */
-    protected EditSubjectCommand(Index index, Label[] subjectsToEdits) {
+    protected SubjectEditCommand(Index index, Label[] subjectsToEdits) {
         requireNonNull(index);
         requireNonNull(subjectsToEdits);
         this.index = index;

@@ -14,7 +14,7 @@ import seedu.tutor.model.person.Person;
 /**
  * Changes a subject name across the whole list.
  */
-public class ChangeSubjectCommand extends Command {
+public class SubjectChangeCommand extends Command {
 
     private final Label oldSubject;
     private final Label newSubject;
@@ -23,7 +23,7 @@ public class ChangeSubjectCommand extends Command {
      * @param oldSubject The name of the subject to be changed.
      * @param newSubject The name of the subject after changed.
      */
-    protected ChangeSubjectCommand(Label oldSubject, Label newSubject) {
+    protected SubjectChangeCommand(Label oldSubject, Label newSubject) {
         requireNonNull(oldSubject);
         requireNonNull(newSubject);
         this.oldSubject = oldSubject;

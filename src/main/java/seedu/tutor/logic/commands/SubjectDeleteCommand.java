@@ -14,7 +14,7 @@ import seedu.tutor.model.person.Person;
 /**
  * Deletes subject(s) across all person
  */
-public class DeleteSubjectCommand extends Command {
+public class SubjectDeleteCommand extends Command {
 
     private final Label[] subjectsToDelete;
 
@@ -22,7 +22,7 @@ public class DeleteSubjectCommand extends Command {
      * Returns a DeleteSubjectCommand object that deletes subject(s) across all person.
      * @param subjectsToDelete An array of subject(s) as Label object to be deleted.
      */
-    protected DeleteSubjectCommand(Label[] subjectsToDelete) {
+    protected SubjectDeleteCommand(Label[] subjectsToDelete) {
         requireNonNull(subjectsToDelete);
         this.subjectsToDelete = subjectsToDelete;
     }
