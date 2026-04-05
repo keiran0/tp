@@ -122,6 +122,7 @@ Notes:
 * When editing subjects, the existing subject of the person will be removed i.e adding of subject is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 * You can remove the person's subject by typing `s/` without specifying any subject after it.
+* Typing `t/` or `s/` is only valid if there is at least one non-whitespace character after it. Inputs containing only spaces after `t/` or `s/` are invalid.
 
 Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -194,9 +195,11 @@ Notes:
 * The search is case-insensitive: e.g `hans` will match `Hans`
 * As relations are bidirectional, searching `Bernice Yu/Alex Yeoh` is equivalent to searching `Alex Yeoh/Bernice Yu`
 * Partial matches are allowed. For example, searching `r` will return results everyone that has a relation containing `r`
-* Example: `r/mother` will find everyone who is a mother, or has a mother
-* Example: `r/Alex Yeoh` will find everyone related to Alex Yeoh and himself
-* Example: `r/a` will find everyone who has the letter `a` in the relation (matching names and/or roles)
+
+Examples:
+* `r/mother` will find everyone who is a mother, or has a mother
+* `r/Alex Yeoh` will find everyone related to Alex Yeoh and himself
+* `r/a` will find everyone who has the letter `a` in the relation (matching names and/or roles)
 
 ### <span id="finding-persons-by-subject"></span>Locating persons by subject: `find s/KEYWORD`
 
