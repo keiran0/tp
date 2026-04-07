@@ -17,6 +17,9 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private TextArea resultDisplay;
 
+    /**
+     * Creates a {@code ResultDisplay} and shows the default startup hint.
+     */
     public ResultDisplay() {
         super(FXML);
         setFeedbackToUser(STARTUP_MESSAGE);
