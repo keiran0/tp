@@ -117,6 +117,7 @@
         "adding-or-deleting-a-relation-relate": "Adding or deleting a relation : relate",
         "locating-persons-by-name-find": "Locating persons by name: find",
         "locating-persons-by-relation-find-r-keyword": "Locating persons by relation: find r/KEYWORD",
+        "locating-persons-by-tag-find-t-keyword": "Locating persons by tag: find t/KEYWORD",
         "locating-persons-by-subject-find-s-keyword": "Locating persons by subject: find s/KEYWORD",
         "renaming-deleting-or-editing-subject-s-subject": "Renaming, deleting, or editing subject(s): subject",
         "deleting-a-person-delete": "Deleting a person : delete",
