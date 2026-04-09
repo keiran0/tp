@@ -69,18 +69,7 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        Set<Relation> relationsToAdd = toAdd.getRelations();
-        Person toAddWithoutRelations = new Person(toAdd.getName(), toAdd.getPhone(), toAdd.getEmail(),
-                toAdd.getAddress(), toAdd.getTags(), new HashSet<>(), toAdd.getSubjects());
-        model.addPerson(toAddWithoutRelations);
-        Command relateCommand = new RelateCommand(relationsToAdd, new HashSet<>());
-        try {
-            relateCommand.execute(model);
-        } catch (CommandException ce) {
-            model.deletePerson(toAddWithoutRelations);
-            throw ce;
-        }
-
+        model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
