@@ -12,7 +12,7 @@ public class HelpCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String DEFAULT_HELP_MESSAGE = "Available commands:"
+    public static final String DEFAULT_HELP_MESSAGE = "Available commands: "
             + "(type `help [COMMAND]` to see details of each command, eg. `help add`):\n"
             + "- list\n"
             + "- add\n"
@@ -22,7 +22,7 @@ public class HelpCommand extends Command {
             + "- relate\n"
             + "- subject\n"
             + "- find \n"
-            + "- exit \n";
+            + "- exit";
 
     private final String commandString;
 
