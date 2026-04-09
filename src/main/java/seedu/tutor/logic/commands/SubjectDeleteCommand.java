@@ -2,6 +2,7 @@ package seedu.tutor.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,21 +36,17 @@ public class SubjectDeleteCommand extends Command {
         Set<Label> deletedSubjects = new HashSet<>();
 
         // checking if all subject exist
+        Set<Label> subjectNotExist = new HashSet<>(Arrays.asList(subjectsToDelete));
         for (Person currentPerson : persons) {
-            if (!checkPersonContainSubjects(currentPerson, subjectsToDelete)) {
-                Set<Label> subjectNotExist = new HashSet<>();
-                for (Label subject: subjectsToDelete) {
-                    if (!checkPersonContainSubject(currentPerson, subject)) {
-                        subjectNotExist.add(subject);
-                    }
-                }
-                StringBuilder result = new StringBuilder("Subject(s) not found: ");
-                for (Label subject: subjectNotExist) {
-                    result.append(subject.labelName);
-                    result.append(" ");
-                }
-                throw new CommandException(result.toString());
+            subjectNotExist.removeIf(subject -> checkPersonContainSubject(currentPerson, subject));
+        }
+        if (!subjectNotExist.isEmpty()) {
+            StringBuilder result = new StringBuilder("Subject(s) not found: ");
+            for (Label subject: subjectNotExist) {
+                result.append(subject.labelName);
+                result.append(" ");
             }
+            throw new CommandException(result.toString());
         }
 
         for (Person currentPerson : persons) {
@@ -109,24 +106,5 @@ public class SubjectDeleteCommand extends Command {
 
         Set<Label> subjects = new HashSet<>(personToCheck.getSubjects());
         return subjects.contains(subject);
-    }
-
-    /**
-     * Checks if subjects are in the subject field of a person.
-     * @param personToCheck The person to check.
-     * @param subjects The subjects.
-     * @return True if contain else false.
-     */
-    private static boolean checkPersonContainSubjects(Person personToCheck, Label[] subjects) {
-        requireNonNull(personToCheck);
-        requireNonNull(subjects);
-
-        Set<Label> personSubjects = new HashSet<>(personToCheck.getSubjects());
-        for (Label subject: subjects) {
-            if (!personSubjects.contains(subject)) {
-                return false;
-            }
-        }
-        return true;
     }
 }
