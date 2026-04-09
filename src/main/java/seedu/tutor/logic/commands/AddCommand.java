@@ -68,7 +68,12 @@ public class AddCommand extends Command {
                 toAdd.getAddress(), toAdd.getTags(), new HashSet<>(), toAdd.getSubjects());
         model.addPerson(toAddWithoutRelations);
         Command relateCommand = new RelateCommand(relationsToAdd, new HashSet<>());
-        relateCommand.execute(model);
+        try {
+            relateCommand.execute(model);
+        } catch (CommandException ce) {
+            model.deletePerson(toAddWithoutRelations);
+            throw ce;
+        }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
