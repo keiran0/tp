@@ -6,13 +6,13 @@ import static seedu.tutor.logic.parser.CliSyntax.PREFIX_SUBJECT_DELETE;
 import static seedu.tutor.logic.parser.CliSyntax.PREFIX_SUBJECT_EDIT;
 import static seedu.tutor.logic.parser.CliSyntax.PREFIX_SUBJECT_RENAME;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.tutor.commons.core.index.Index;
 import seedu.tutor.logic.commands.SubjectCommand;
 import seedu.tutor.logic.parser.exceptions.ParseException;
 import seedu.tutor.model.label.Label;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Parses input arguments and returns a new SubjectCommand object
