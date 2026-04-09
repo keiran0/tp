@@ -47,7 +47,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             String slashRegex = "[ /]+$";
             String numberRegex = "^[0-9]+$";
             if (trimmed.isEmpty() || trimmed.matches(slashRegex)) {
-                throw new ParseException("Keyword missing! Please specify a non-space, non-slash keyword after 'p/' \n"
+                throw new ParseException("Keyword missing! Please specify a number after 'p/' \n"
                         + "Example: find p/12345678");
             }
 
@@ -88,8 +88,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             String trimmed = trimmedArgs.substring(2).trim();
             String slashRegex = "[ /]+$";
             if (trimmed.isEmpty() || trimmed.matches(slashRegex)) {
-                throw new ParseException("Keyword missing! Please specify a non-space, "
-                        + "non-slash keyword (address) after 'a/' \n"
+                throw new ParseException("Keyword missing! Please specify an address after 'a/' \n"
                         + "Example: find a/Woodlands, find a/Blk");
             }
 
@@ -101,8 +100,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             String trimmed = trimmedArgs.substring(2).trim();
             String slashRegex = "[ /]+$";
             if (trimmed.isEmpty() || trimmed.matches(slashRegex)) {
-                throw new ParseException("Keyword missing! Please specify a non-space, "
-                        + "non-slash keyword (name) after 'n/' \n"
+                throw new ParseException("Keyword missing! Please specify a name or multiple names after 'n/' \n"
                         + "Example: find n/Bob, find n/Alice Bob");
             }
 
