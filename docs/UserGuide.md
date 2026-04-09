@@ -242,37 +242,36 @@ Simply typing `s/C` will match both Chemistry and Chinese subjects!
 
 ### <span id="subject-command"></span>Renaming, deleting, or editing subject(s): `subject`
 
-Renames a subject name across all persons, deletes subject(s) across all persons, or edits one person's subject field.
+Renames a subject name across all currently listed persons, deletes subject(s) across all currently listed persons, or edits one person's subject field.
 
 Command format: 
+* `subject [r\SUBJECT1/SUBJECT2]`
 * `subject [d\SUBJECT1/SUBJECT2/SUBJECT3/...]`  
 * `subject INDEX [e\SUBJECT1/SUBJECT2/SUBJECT3/...]`
-* `subject [r\SUBJECT1/SUBJECT2]`
 
 Notes:
-* All `SUBJECT` values must be alphanumeric only and non-empty.
+* All `SUBJECT` values must be alphanumeric (without whitespaces) only and non-empty.
+* For renaming a subject:
+    * `r\SUBJECT1/SUBJECT2` renames every instance of `SUBJECT1` to `SUBJECT2` across all currently listed persons' subject fields.
+    * Renaming a non-existing `SUBJECT` is allowed. `No subject renamed.` will be returned if no subject is renamed.
 * For deleting subject(s):
     * `d\SUBJECT1/SUBJECT2/SUBJECT3` deletes every instance of `SUBJECT1`, `SUBJECT2`, and `SUBJECT3` across all persons' subject fields.
-    * `d\` accepts any positive number of subjects.
+    * `d\` accepts any positive number of subjects. 
     * Deleting a non-existing `SUBJECT` is allowed. `No subject deleted.` will be returned if no subject is deleted.
 * For editing a person's subject field:
-    * `INDEX e\SUBJECT1/SUBJECT2/...` edits the `INDEX`-th shown person's subject field by toggling each listed subject.
-    * `Index` must be a positive integer.
+    * `INDEX e\SUBJECT1/SUBJECT2/...` edits the `INDEX`-th shown person's subject field by toggling each listed subject. This command provides functionality for adding and removing subjects in a single command.
+    * `INDEX` must be a positive integer.
     * Toggling means:
-        * an existing subject is removed;
-        * a missing subject is added.
+        * an existing subject is removed; and
+        * a non-existing subject is added.
     * `e\` accepts any positive number of subjects.
-    * This command may add and remove subjects in a single use.
-* For renaming a subject:
-    * `r\SUBJECT1/SUBJECT2` renames every instance of `SUBJECT1` to `SUBJECT2` across all persons' subject fields.
-    * Renaming a non-existing `SUBJECT` is allowed. `No subject renamed.` will be returned if no subject is renamed.
 
-Example:
-* `subject d\Mathematics/Mandrin`
-* `subject d\Biology/Physic/Chemistry/History/Art`
-* `subject 1 e\Maths/Biology`
-* `subject 2 e\Physic/Chemistry/History/Art`
+Examples:
 * `subject r\Maths/Mathematics`
+* `subject d\Mathematics/Mandarin`
+* `subject d\Biology/Physics/Chemistry/History/Art`
+* `subject 1 e\Maths/Biology`
+* `subject 2 e\Physics/Chemistry/History/Art`
 
 ### <span id="deleting-person"></span>Deleting a person : `delete`
 
@@ -345,7 +344,7 @@ Action     | Format, Examples
 **List**   | `list`
 **Help**   | `help`
 **Relate** | `relate [a\RELATION]... [d\RELATION]...`<br> e.g., `relate a\Bernice Yu/Alex Yeoh/parent/child d\David Li/Charlotte Oliveiro/brother1/brother2`
-**Subject** (delete)|`subject [d\SUBJECT1/SUBJECT2/SUBJECT3/...]`<br> e.g., `subject d\Art/History/Mandrin/English`
-**Subject** (edit)|`subject INDEX [e\SUBJECT1/SUBJECT2/SUBJECT3/...]`<br> e.g., `subject 1 e\Art/History/Mandrin/English`
-**Subject** (rename)|`subject [r\SUBJECT1/SUBJECT2]`<br> e.g., `subject r\Math/Mathematic`
+**Subject** (rename)|`subject [r\SUBJECT1/SUBJECT2]`<br> e.g., `subject r\Math/Mathematics`
+**Subject** (delete)|`subject [d\SUBJECT1/SUBJECT2/SUBJECT3/...]`<br> e.g., `subject d\Art/History/Mandarin/English`
+**Subject** (edit)|`subject INDEX [e\SUBJECT1/SUBJECT2/SUBJECT3/...]`<br> e.g., `subject 1 e\Art/History/Mandarin/English`
 
