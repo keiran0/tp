@@ -72,8 +72,7 @@ TutorMap offers you a simple way to stay organized without complex software. If 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `list` and `exit`) will be ignored.<br>
 
 * Commands cannot exceed 400 characters in length.
 
@@ -86,6 +85,12 @@ Provides a message to the user displaying the list of different commands.
 
 Command format: `help`
 
+Notes:
+* The user can type in a command after 'help' to see how to use that command.
+
+Examples:
+* `help add` will show the user how to use the `add` command.
+
 ![help message](images/helpCommand.png)
 
 
@@ -96,15 +101,16 @@ Adds a person to TutorMap.
 Command format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [s/SUBJECT]... [t/TAG]...`
 
 Notes:
-* A person can have any number of subjects (including 0)
-* A person can have any number of tags (including 0)
-* Person fields are case-sensitive (e.g. `John Doe` and `john doe` are different names, `Math` and `math` are different subjects)
+* A person can have any number of subjects (including 0).
+* A person can have any number of tags (including 0).
+* Person fields are case-sensitive (e.g. `John Doe` and `john doe` are different names, `Math` and `math` are different subjects).
 * Phone numbers should contain only digits and be at least 3 digits long, optionally prefixed with a parenthesized country code. Examples: `(+65)12389123`, `12398123`, `(1809)12312093`, `(23-39)1289312`
 
 * Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 * `add n/Ceaser Chips t/student e/cc@example.com a/Mary street p/1234567 s/Math`
+* `add n/Alex Yeoh p/(+65)98708000 e/alex@example.com a/Choa Chu Kang`
 
 ### <span id="listing-persons"></span>Listing all persons : `list`
 
@@ -222,17 +228,18 @@ Notes:
 * For editing a person's subject field:
     * `INDEX e\SUBJECT1/SUBJECT2/...` edits the `INDEX`-th shown person's subject field by toggling each listed subject. This command provides functionality for adding and removing subjects in a single command.
     * `INDEX` must be a positive integer.
+    * This command is case-sensitive for `SUBJECT` values. e.g. `Math` will not match `math`.
     * Toggling means:
         * an existing subject is removed; and
         * a non-existing subject is added.
     * `e\` accepts any positive number of subjects.
 
 Examples:
-* `subject r\Maths/Mathematics`
-* `subject d\Mathematics/Mandarin`
-* `subject d\Biology/Physics/Chemistry/History/Art`
-* `subject 1 e\Maths/Biology`
-* `subject 2 e\Physics/Chemistry/History/Art`
+* `subject r\Maths/Mathematics` will rename every instance of `Maths` to `Mathematics` across all currently listed persons' subject fields.
+* `subject d\Mathematics/Mandarin` will delete every instance of `Mathematics` and `Mandarin` across all persons' subject fields.
+* `subject d\Biology/Physics/Chemistry/History/Art` will delete every instance of `Biology`, `Physics`, `Chemistry`, `History`, and `Art` across all persons' subject fields.
+* `subject 1 e\Maths/Biology` will edit the subject field of the 1st shown person by toggling `Maths` and `Biology`. If the person already has `Maths` as a subject, it will be removed. If the person does not have `Biology` as a subject, it will be added.
+* `subject 2 e\Physics/Chemistry/History/Art` will edit the subject field of the 2nd shown person by toggling `Physics`, `Chemistry`, `History`, and `Art`. If the person already has `Physics` as a subject, it will be removed. If the person does not have `Chemistry` as a subject, it will be added. If the person already has `History` as a subject, it will be removed. If the person does not have `Art` as a subject, it will be added.
 
 ### <span id="deleting-person"></span>Deleting a person : `delete`
 
