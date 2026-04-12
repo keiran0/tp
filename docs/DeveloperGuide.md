@@ -459,7 +459,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User attempts to delete a subject across multiple person
-2.  TutorMap displays the success of deletion of the subject
+2.  TutorMap displays successful deletion of the subject
 
     Use case ends.
 
