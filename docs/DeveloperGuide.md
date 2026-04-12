@@ -15,6 +15,10 @@
 
 All thanks go to AddressBook-3 and CS2103T.
 
+CoPilot was used in the following ways within this project:
+* Used to understand the project structure and codebase.
+* Used to guide implementation and generate code snippets for some of the features and fields, such as subject.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**

@@ -265,7 +265,7 @@ Clears all entries from the tutor map. As a safety measure, `clear` returns the 
 
 Command format: `clear confirm`
 
-**Caution**: This action is irreversible! Use `clear confirm` to clear. Any additional whitespace will be ignored, but only the word `confirm` without any additional characters will be accepted.
+**Caution**: This action is irreversible! Use `clear confirm` to clear. Any additional whitespace will be ignored.
 
 ### <span id="exiting-program"></span>Exiting the program : `exit`
 
