@@ -651,6 +651,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. TutorMap does not erase all your data in case a corrupted data file exists. 
-   2. Error messages will show up when the fields are edited from within the app.
-   3. It is advised that the error messages are followed and the data file edited according to the error messages.
+   1. If your changes to the data file makes its format invalid, TutorMap will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.
+   2. TutorMap does not erase all your data in case an invalid relation exists that still conforms to the relation format `name1/name2/relation1/relation2`. However, it may behave in unexpected ways.
+
