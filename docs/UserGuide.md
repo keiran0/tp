@@ -163,7 +163,7 @@ Notes:
 * For any relation:
   *  both person must exist.
   * `PERSON1` and `PERSON2` must be different.
-  * There is no restriction for relation name (except `\` is not allowed).
+  * There is no restriction for relation name (except `\` and `/` are not allowed).
 * For adding relation, the relation to be added must not exist before adding.
 * For deleting relation, the relation to be deleted must exist before deleting.
 * For adding or deleting of relation, the change of relation field will be updated for both persons.
@@ -174,6 +174,7 @@ Notes:
 * The command is case-sensitive for `PERSON` e.g. `David` will not match `david`
 * The command is case-sensitive for `RELATION_NAME` e.g. `Student` will not match `student`
 * Supports multiple addition and/or deletion operations in the same command e.g. `relate a\RELATION1 d\RELATION2 ...`, `relate a\RELATION1 a\RELATION2 ...`
+* This command doesn't update the current contact list.
 
 Examples:
 * `relate a\Teacher Alex/Bernice Yu/Teacher/Student` will create a relation for both `Teacher Alex` and `Bernice Yu`.
