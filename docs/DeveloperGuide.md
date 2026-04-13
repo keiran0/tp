@@ -341,7 +341,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User performs Listing all Persons (UC01) or Finding a person (UC5)
+1.  User performs Listing all Persons (UC1) or Finding a person (UC5)
 2.  User requests to add a person to the list
 3.  TutorMap adds the person
 
@@ -359,7 +359,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User performs Listing all Persons (UC01) or Finding a person (UC5)
+1.  User performs Listing all Persons (UC1) or Finding a person (UC5)
 2.  User requests to edit a person on the list
 3.  TutorMap edits the person
 
