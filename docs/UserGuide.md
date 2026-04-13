@@ -174,7 +174,7 @@ Notes:
 * The command is case-sensitive for `PERSON` e.g. `David` will not match `david`
 * The command is case-sensitive for `RELATION_NAME` e.g. `Student` will not match `student`
 * Supports multiple addition and/or deletion operations in the same command e.g. `relate a\RELATION1 d\RELATION2 ...`, `relate a\RELATION1 a\RELATION2 ...`
-* This command doesn't update the current contact list.
+* The command doesn't update the current contact list.
 
 Examples:
 * `relate a\Teacher Alex/Bernice Yu/Teacher/Student` will create a relation for both `Teacher Alex` and `Bernice Yu`.
