@@ -287,9 +287,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions                       | refer to instructions when I forget how to use the App                      |
 | `* * *`  | new user                                   | see an initial help message                  | see how to get started with the App                                         |
 | `* * *`  | user                                       | delete a contact                             | remove contacts that I no longer need                                       |
-| `* * *`  | user                                       | find a contact by name                       | locate details of contact without having to go through the entire list      |
-| `* * *`  | user                                       | find other relevant contacts given a contact | see others who are related to my contact if there is a need to contact them |
-| `* *`    | user                                       | add relation between two contacts            | keep track of how they are connected                                        |
+| `* * *`  | user                                       | find a contact by different fields           | locate details of contact without having to go through the entire list      |
+| `* * *`  | user                                       | add relation between two contacts            | keep track of how they are connected                                        |
+| `* *`    | user                                       | find other relevant contacts given a contact | see others who are related to my contact if there is a need to contact them |
 | `* *`    | user                                       | edit the subject field of a contact          | keep the contact's subject information up to date                           |
 | `* *`    | user                                       | rename a subject across the contacts         | correct or standardize subject names easily                                 |
 | `* *`    | user                                       | delete a subject across the contacts         | remove outdated or unnecessary subject records                              |
