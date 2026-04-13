@@ -193,7 +193,7 @@ Command format: `find prefix/KEYWORD`
 
 Notes:
 * All searches are case-insensitive. e.g. `hans` will match `Hans`
-* Partial searching is supported. However, it is advised to be as specific as possible. While the app supports a command that looks like `find r/ce/bo`, resulting in relations between `Alice` and `Bob` to appear, the freedom may seem unintuitive.
+* Partial searching is supported. However, it is advised to be as specific as possible. While the app supports a command that looks like `find r/ce/bo` (matches relation `alice/bob/sister/brother` i.e. the end of Alice's name and the start of Bob's name), resulting in relations between `Alice` and `Bob` to appear, the freedom may seem unintuitive.
 * As relations are bidirectional, `find r/Bernice Yu/Alex Yeoh` is equivalent to `find r/Alex Yeoh/Bernice Yu`
 * Find by name, subject and tag supports multiple inputs. `find n/Sally David` will display anyone who has *either* `Sally` or `David` in their name, and similarly for subjects and tags.
 
@@ -204,8 +204,8 @@ Examples:
 * `find t/online offline` will find everyone labelled with a tag that is or contains `online` OR `offline`
 * `find r/mother` will find everyone who is a mother, or has a mother
 * `find r/brother/sister` will find all brothers who have sister(s), and sisters who have brother(s)
-* `find r/Alex Yeoh` will find everyone related to Alex Yeoh and himself
-* `find r/Alex Yeoh/Bernice Yu` will display both people to see the relations between them
+* `find r/Alex Yeoh` will find everyone related to Alex Yeoh and himself. There will not be any results if he does not have any relation.
+* `find r/Alex Yeoh/Bernice Yu` will display both people to see the relations between them, only if they have relations with each other.
 * `find s/Math` will find everyone labelled with the subject that is or contains `Math`
 * `find s/Math Science` will find everyone labelled with the subject that is or contains `Math` OR `Science`
 * `find e/gmail` will find everyone whose email contains `gmail`
@@ -228,7 +228,7 @@ Notes:
     * Renaming a non-existing `SUBJECT` is not allowed.
     * Renaming a `SUBJECT1` to existing `SUBJECT2` is allowed. 
 * For deleting subject(s):
-    * `d\SUBJECT1/SUBJECT2/SUBJECT3` deletes every instance of `SUBJECT1`, `SUBJECT2`, and `SUBJECT3` across all persons' subject fields.
+    * `d\SUBJECT1/SUBJECT2/SUBJECT3` deletes every instance of `SUBJECT1`, `SUBJECT2`, and `SUBJECT3` across all listed persons' subject fields.
     * `d\` accepts any positive number of subjects. 
     * Deleting a non-existing `SUBJECT` is not allowed.
 * For editing a person's subject field:
@@ -255,10 +255,11 @@ Notes:
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, ...
+* When a contact is deleted, all their relations are also deleted from the people who had relations with them.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the tutor map.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### <span id="clearing-entries"></span>Clearing all entries : `clear`
 
