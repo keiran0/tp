@@ -628,8 +628,8 @@ testers are expected to do more *exploratory* testing.
     1. Test Case (Multiple Name Search): `find n/Sally David`
         Expected: Lists all persons whose names contain "Sally" OR "David".
        
-    2. Test Case (Partial Phone Search): `find p/9123`
-        Expected: Lists all persons whose phone numbers contain the sequence "9123".
+    2. Test Case (Partial Phone Search): `find p/9123 4567`
+        Expected: Lists all persons whose phone numbers contain the sequence "9123 4567".
 
    3. Test Case (Relation Search): `find r/Alex Yeoh`
            Expected: Displays Alex Yeoh and every person linked to him via a relation.
