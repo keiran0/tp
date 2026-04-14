@@ -180,7 +180,7 @@ Examples:
 
 ### <span id="finding-persons-single"></span>Finding persons (single search): `find`
 
-Finds and displays anyone who has the KEYWORD contained in their field specified by the prefix.
+Finds and displays anyone who has the `KEYWORD` contained in their field specified by the prefix.
 
 Command format (single search): `find prefix/KEYWORD`
 
@@ -207,7 +207,7 @@ Examples:
 
 ### <span id="finding-persons-multiple"></span>Finding persons (multiple search): `find`
 
-Command format (multiple search): `find prefix/KEYWORD KEYWORDS`
+Command format (multiple search): `find prefix/[KEYWORD...]`
 
 - Valid prefixes: `n`, `s`, `t`
     - `n`: Search by name
