@@ -41,8 +41,7 @@ public class AddCommand extends Command {
 
             + "Notes: \n"
             + "- " + PREFIX_TAG + ", " + PREFIX_SUBJECT + " are optional.\n"
-            + "- " + PREFIX_TAG + ", " + PREFIX_SUBJECT + " can be used once or multiple times.\n"
-            + "- " + PREFIX_TAG + ", " + PREFIX_SUBJECT + " cannot be empty.";
+            + "- " + PREFIX_TAG + ", " + PREFIX_SUBJECT + " can be used once or multiple times.\n";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in TutorMap";
